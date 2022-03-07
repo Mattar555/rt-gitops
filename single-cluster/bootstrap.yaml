@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: doc
     server: https://kubernetes.default.svc
-  project: doc-project # Not sure if we can just use default here
+  project: gitops-project # Not sure if we can just use default here
   source:
     path: single-cluster
     repoURL: https://github.com/Mattar555/rt-gitops.git
