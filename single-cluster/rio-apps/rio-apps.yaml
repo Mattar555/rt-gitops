@@ -12,4 +12,4 @@ spec:
     server: https://kubernetes.default.svc
   project: doc-project
   source: # repoURL  and targetRevision populated by kustomize patches in single-cluster/kustomization.yaml
-    path: 0-bootstrap/single-cluster/rio-apps
+    path: single-cluster/rio-apps
