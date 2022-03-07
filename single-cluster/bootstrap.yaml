@@ -12,3 +12,7 @@ spec:
     path: single-cluster
     repoURL: https://github.com/Mattar555/rt-gitops.git
     targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -14,3 +14,7 @@ spec:
   project: doc-project
   source:
     path: db-gene-demo-capacity-planning/dbos-init # repoURL and revision added in the Kustomization file
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
