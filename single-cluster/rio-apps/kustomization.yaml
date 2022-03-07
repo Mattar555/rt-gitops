@@ -5,6 +5,7 @@ resources:
  - argocd/decision-brain/infra/dbos-infra.yaml
  - argocd/decision-brain/app/dbos-app.yaml
  - argocd/decision-brain/capacity-planning/dbos-capacity-planning.yaml
+ - argocd/decision-brain/infra-post/infra-post-job.yaml
 
 patches:
 - target:

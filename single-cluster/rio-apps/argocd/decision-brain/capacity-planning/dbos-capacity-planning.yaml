@@ -4,7 +4,7 @@ metadata:
   name: dbos-gitops-capacity-plannig
   namespace: openshift-gitops
   annotations:
-    argocd.argoproj.io/sync-wave: "6"
+    argocd.argoproj.io/sync-wave: "7"
   labels:
     gitops.tier.layer: rio-applications
 spec:
@@ -14,3 +14,7 @@ spec:
   project: doc-project
   source:
     path: db-gene-demo-capacity-planning/capacity-planning # repoURL and revision added in the Kustomization file
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
