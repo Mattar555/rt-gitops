@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dbos-gitops-capacity-plannig
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+  labels:
+    gitops.tier.layer: rio-applications
+spec:
+  destination:
+    namespace: doc
+    server: https://kubernetes.default.svc
+  project: doc-project
+  source:
+    path: db-gene-demo-capacity-planning/capacity-planning # repoURL and revision added in the Kustomization file

@@ -1,0 +1,21 @@
+resources:
+ - argocd/decision-brain/init/dbos-init.yaml
+ - argocd/decision-brain/secrets/dbos-secrets.yaml
+ - argocd/decision-brain/volumes/dbos-volumes.yaml
+ - argocd/decision-brain/infra/dbos-infra.yaml
+ - argocd/decision-brain/app/dbos-app.yaml
+ - argocd/decision-brain/capacity-planning/dbos-capacity-planning.yaml
+
+patches:
+- target:
+    group: argoproj.io
+    kind: Application
+    labelSelector: "gitops.tier.layer=rio-applications"
+  patch: |-
+    - op: add
+      path: /spec/source/repoURL
+      value: https://github.com/Mattar555/rt-doc.git
+    - op: add
+      path: /spec/source/targetRevision
+      value: main
+
