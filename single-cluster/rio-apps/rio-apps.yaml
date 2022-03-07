@@ -10,6 +10,6 @@ spec:
   destination:
     namespace: doc
     server: https://kubernetes.default.svc
-  project: doc-project
+  project: doc-project # Change this to gitops-project
   source: # repoURL  and targetRevision populated by kustomize patches in single-cluster/kustomization.yaml
     path: single-cluster/rio-apps
