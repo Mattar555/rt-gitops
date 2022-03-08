@@ -1,0 +1,210 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"ArgoCD","metadata":{"annotations":{},"creationTimestamp":"2022-03-04T02:56:53Z","finalizers":["argoproj.io/finalizer"],"generation":5,"managedFields":[{"apiVersion":"argoproj.io/v1alpha1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:finalizers":{".":{},"v:\"argoproj.io/finalizer\"":{}},"f:ownerReferences":{".":{},"k:{\"uid\":\"a2fa9b15-90e2-49f0-9746-c493ef076b60\"}":{".":{},"f:apiVersion":{},"f:blockOwnerDeletion":{},"f:controller":{},"f:kind":{},"f:name":{},"f:uid":{}}}},"f:spec":{".":{},"f:applicationSet":{".":{},"f:resources":{".":{},"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}}},"f:controller":{".":{},"f:processors":{},"f:resources":{".":{},"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}},"f:sharding":{}},"f:dex":{".":{},"f:openShiftOAuth":{},"f:resources":{".":{},"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}}},"f:grafana":{".":{},"f:enabled":{},"f:ingress":{".":{},"f:enabled":{}},"f:resources":{".":{},"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}},"f:route":{".":{},"f:enabled":{}}},"f:ha":{".":{},"f:enabled":{},"f:resources":{".":{},"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}}},"f:initialSSHKnownHosts":{},"f:prometheus":{".":{},"f:enabled":{},"f:ingress":{".":{},"f:enabled":{}},"f:route":{".":{},"f:enabled":{}}},"f:rbac":{".":{},"f:policy":{},"f:scopes":{}},"f:redis":{".":{},"f:resources":{".":{},"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}}},"f:repo":{".":{},"f:resources":{".":{},"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}}},"f:resourceExclusions":{},"f:server":{".":{},"f:autoscale":{".":{},"f:enabled":{}},"f:grpc":{".":{},"f:ingress":{".":{},"f:enabled":{}}},"f:ingress":{".":{},"f:enabled":{}},"f:resources":{".":{},"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}},"f:route":{".":{},"f:enabled":{}},"f:service":{".":{},"f:type":{}}},"f:tls":{".":{},"f:ca":{}}},"f:status":{".":{},"f:applicationController":{},"f:dex":{},"f:phase":{},"f:redis":{},"f:repo":{},"f:server":{},"f:ssoConfig":{}}},"manager":"manager","operation":"Update","time":"2022-03-04T02:56:54Z"},{"apiVersion":"argoproj.io/v1alpha1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:kubectl.kubernetes.io/last-applied-configuration":{}}}},"manager":"kubectl-client-side-apply","operation":"Update","time":"2022-03-08T01:54:38Z"},{"apiVersion":"argoproj.io/v1alpha1","fieldsType":"FieldsV1","fieldsV1":{"f:spec":{"f:resourceCustomizations":{}}},"manager":"Mozilla","operation":"Update","time":"2022-03-08T02:15:10Z"}],"name":"openshift-gitops","namespace":"openshift-gitops","ownerReferences":[{"apiVersion":"pipelines.openshift.io/v1alpha1","blockOwnerDeletion":true,"controller":true,"kind":"GitopsService","name":"cluster","uid":"a2fa9b15-90e2-49f0-9746-c493ef076b60"}],"resourceVersion":"4187146","uid":"203763e4-7db9-4903-b7d4-ac5d5d8c3634"},"spec":{"applicationSet":{"resources":{"limits":{"cpu":"2","memory":"1Gi"},"requests":{"cpu":"250m","memory":"512Mi"}}},"controller":{"processors":{},"resources":{"limits":{"cpu":"2","memory":"2Gi"},"requests":{"cpu":"250m","memory":"1Gi"}},"sharding":{}},"dex":{"openShiftOAuth":true,"resources":{"limits":{"cpu":"500m","memory":"256Mi"},"requests":{"cpu":"250m","memory":"128Mi"}}},"grafana":{"enabled":false,"ingress":{"enabled":false},"resources":{"limits":{"cpu":"500m","memory":"256Mi"},"requests":{"cpu":"250m","memory":"128Mi"}},"route":{"enabled":false}},"ha":{"enabled":false,"resources":{"limits":{"cpu":"500m","memory":"256Mi"},"requests":{"cpu":"250m","memory":"128Mi"}}},"initialSSHKnownHosts":{},"prometheus":{"enabled":false,"ingress":{"enabled":false},"route":{"enabled":false}},"rbac":{"policy":"g, system:cluster-admins, role:admin","scopes":"[groups]"},"redis":{"resources":{"limits":{"cpu":"500m","memory":"256Mi"},"requests":{"cpu":"250m","memory":"128Mi"}}},"repo":{"resources":{"limits":{"cpu":"1","memory":"1Gi"},"requests":{"cpu":"250m","memory":"256Mi"}}},"resourceCustomizations":"apps.openshift.io/DeploymentConfig:\n  ignoreDifferences: |\n    jsonPointers:\n    - /spec/template/spec\n  health.lua: |\n   hs = {}\n    hs.status = \"Progressing\"\n    hs.message = \"\"\n    if obj.status ~= nil then\n      if obj.status.unavailableReplicas == 0 then\n        hs.status = \"Healthy\"\n        hs.message = \"Healthy\"\n        end\n      end\n    end\n    return hs\nargoproj.io/Application:\n  ignoreDifferences: |\n    jsonPointers:\n    - /spec/source/targetRevision\n    - /spec/source/repoURL\n  health.lua: |\n    hs = {}\n    hs.status = \"Progressing\"\n    hs.message = \"\"\n    if obj.status ~= nil then\n      if obj.status.health ~= nil then\n        hs.status = obj.status.health.status\n        if obj.status.health.message ~= nil then\n          hs.message = obj.status.health.message\n        end\n      end\n    end\n    return hs\nroute.openshift.io/Route:\n  ignoreDifferences: |\n    jsonPointers:\n    - /status/ingress\n  health.lua:\n    health_status = {}\n    if obj.status ~= nil then\n      if obj.status.ingress ~= nil then\n        numIngressRules = 0\n        for _, ingressRules in pairs(obj.status.ingress) do\n            numIngressRules = numIngressRules + 1\n            numTrue = 0\n            numFalse = 0\n            if obj.status.ingress ~= nil then\n              for _, condition in pairs(ingressRules.conditions) do\n                  if condition.type == \"Admitted\" and condition.status == \"True\" then\n                      numTrue = numTrue + 1\n                  elseif condition.type == \"Admitted\" and condition.status == \"False\" then\n                      numFalse = numFalse + 1\n                  end\n              end\n            end\n            health_status.status = 'Test'\n        end\n        if numTrue == numIngressRules then\n          health_status.status = \"Healthy\"\n          health_status.message = \"Route is healthy\"\n          return health_status\n        elseif numFalse \u003e 0 then\n          health_status.status = \"Degraded\"\n          health_status.message = \"Route is degraded\"\n          return health_status\n        else\n          health_status.status = \"Progressing\"\n          health_status.message = \"Route is still getting admitted\"\n          return health_status\n        end\n      end\n    end\n    health_status.status = \"Progressing\"\n    health_status.message = \"Route is still getting admitted\"\n    return health_status\n","resourceExclusions":"- apiGroups:\n  - tekton.dev\n  clusters:\n  - '*'\n  kinds:\n  - TaskRun\n  - PipelineRun\n","server":{"autoscale":{"enabled":false},"grpc":{"ingress":{"enabled":false}},"ingress":{"enabled":false},"resources":{"limits":{"cpu":"500m","memory":"256Mi"},"requests":{"cpu":"125m","memory":"128Mi"}},"route":{"enabled":true},"service":{"type":""}},"tls":{"ca":{}}},"status":{"applicationController":"Running","dex":"Running","phase":"Available","redis":"Running","repo":"Running","server":"Running","ssoConfig":"Success"}}
+  creationTimestamp: "2022-03-04T02:56:53Z"
+  finalizers:
+  - argoproj.io/finalizer
+  generation: 8
+  name: openshift-gitops
+  namespace: openshift-gitops
+  ownerReferences:
+  - apiVersion: pipelines.openshift.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: GitopsService
+    name: cluster
+    uid: a2fa9b15-90e2-49f0-9746-c493ef076b60
+  resourceVersion: "4260717"
+  uid: 203763e4-7db9-4903-b7d4-ac5d5d8c3634
+spec:
+  applicationSet:
+    resources:
+      limits:
+        cpu: "2"
+        memory: 1Gi
+      requests:
+        cpu: 250m
+        memory: 512Mi
+  controller:
+    processors: {}
+    resources:
+      limits:
+        cpu: "2"
+        memory: 2Gi
+      requests:
+        cpu: 250m
+        memory: 1Gi
+    sharding: {}
+  dex:
+    openShiftOAuth: true
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+  grafana:
+    enabled: false
+    ingress:
+      enabled: false
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+    route:
+      enabled: false
+  ha:
+    enabled: false
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+  initialSSHKnownHosts: {}
+  prometheus:
+    enabled: false
+    ingress:
+      enabled: false
+    route:
+      enabled: false
+  rbac:
+    policy: g, system:cluster-admins, role:admin
+    scopes: '[groups]'
+  redis:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+  repo:
+    resources:
+      limits:
+        cpu: "1"
+        memory: 1Gi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+  resourceCustomizations: |
+    apps.openshift.io/DeploymentConfig:
+      ignoreDifferences: |
+        jsonPointers:
+        - /spec/template/spec
+      health.lua: |
+        hs = {}
+        hs.status = "Progressing"
+        hs.message = ""
+        if obj.status ~= nil then
+          if obj.status.unavailableReplicas == 0 then
+            hs.status = "Healthy"
+            hs.message = "Healthy"
+          end
+        end
+        return hs
+    argoproj.io/Application:
+      ignoreDifferences: |
+        jsonPointers:
+        - /spec/source/targetRevision
+        - /spec/source/repoURL
+      health.lua: |
+        hs = {}
+        hs.status = "Progressing"
+        hs.message = ""
+        if obj.status ~= nil then
+          if obj.status.health ~= nil then
+            hs.status = obj.status.health.status
+            if obj.status.health.message ~= nil then
+              hs.message = obj.status.health.message
+            end
+          end
+        end
+        return hs
+    route.openshift.io/Route:
+      ignoreDifferences: |
+        jsonPointers:
+        - /status/ingress
+      health.lua:
+        health_status = {}
+        if obj.status ~= nil then
+          if obj.status.ingress ~= nil then
+            numIngressRules = 0
+            for _, ingressRules in pairs(obj.status.ingress) do
+                numIngressRules = numIngressRules + 1
+                numTrue = 0
+                numFalse = 0
+                if obj.status.ingress ~= nil then
+                  for _, condition in pairs(ingressRules.conditions) do
+                      if condition.type == "Admitted" and condition.status == "True" then
+                          numTrue = numTrue + 1
+                      elseif condition.type == "Admitted" and condition.status == "False" then
+                          numFalse = numFalse + 1
+                      end
+                  end
+                end
+                health_status.status = 'Test'
+            end
+            if numTrue == numIngressRules then
+              health_status.status = "Healthy"
+              health_status.message = "Route is healthy"
+              return health_status
+            elseif numFalse > 0 then
+              health_status.status = "Degraded"
+              health_status.message = "Route is degraded"
+              return health_status
+            else
+              health_status.status = "Progressing"
+              health_status.message = "Route is still getting admitted"
+              return health_status
+            end
+          end
+        end
+        health_status.status = "Progressing"
+        health_status.message = "Route is still getting admitted"
+        return health_status
+  resourceExclusions: |
+    - apiGroups:
+      - tekton.dev
+      clusters:
+      - '*'
+      kinds:
+      - TaskRun
+      - PipelineRun
+  server:
+    autoscale:
+      enabled: false
+    grpc:
+      ingress:
+        enabled: false
+    ingress:
+      enabled: false
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 125m
+        memory: 128Mi
+    route:
+      enabled: true
+    service:
+      type: ""
+  tls:
+    ca: {}
+status:
+  applicationController: Running
+  dex: Running
+  phase: Available
+  redis: Running
+  repo: Running
+  server: Running
+  ssoConfig: Success
