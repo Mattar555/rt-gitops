@@ -14,6 +14,11 @@ spec:
   project: doc-project
   source:
     path: db-gene-demo-capacity-planning/dbos-infra-post # repoURL and revision added in the Kustomization file
+    helm:
+      values: |
+        REALM_ADMIN_USER_NAME: rioadmin
+        REALM_ADMIN_USER_PASSWORD: rioadmin
+        REALM_ADMIN_USER_EMAIL: rioadmin@rio-aps-poc-14d91fbc484122dac6eebae3af64bb35-0000.au-syd.containers.appdomain.cloud
   syncPolicy:
     automated:
       prune: true
