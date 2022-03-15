@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dbos-gitops-volumes
+  name: dbos-gitops-infra-post-job
   namespace: openshift-gitops
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "4"
   labels:
     gitops.tier.layer: rio-applications
 spec:
@@ -13,7 +13,7 @@ spec:
     server: https://kubernetes.default.svc
   project: doc-project
   source:
-    path: db-gene-demo-capacity-planning/dbos-volumes # repoURL and revision added in the Kustomization file
+    path: db-gene-demo-capacity-planning/ingress # repoURL and revision added in the Kustomization file
   syncPolicy:
     automated:
       prune: true

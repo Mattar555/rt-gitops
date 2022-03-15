@@ -6,6 +6,7 @@ resources:
  - argocd/decision-brain/app/dbos-app.yaml
  - argocd/decision-brain/capacity-planning/dbos-capacity-planning.yaml
  - argocd/decision-brain/infra-post/infra-post-job.yaml
+ - argocd/decision-brain/ingress/ingress.yaml
 
 patches:
 - target:
@@ -15,7 +16,7 @@ patches:
   patch: |-
     - op: add
       path: /spec/source/repoURL
-      value: https://github.com/Mattar555/rt-doc.git
+      value: https://github.com/Mattar555/rt-doc-v4.0.git
     - op: add
       path: /spec/source/targetRevision
       value: main
