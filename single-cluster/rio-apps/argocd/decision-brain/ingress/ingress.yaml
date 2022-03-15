@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dbos-gitops-infra-post-job
+  name: ingress
   namespace: openshift-gitops
   annotations:
     argocd.argoproj.io/sync-wave: "4"
