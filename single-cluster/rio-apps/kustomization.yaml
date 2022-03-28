@@ -7,6 +7,7 @@ resources:
  - argocd/decision-brain/capacity-planning/dbos-capacity-planning.yaml
  - argocd/decision-brain/infra-post/infra-post-job.yaml
  - argocd/decision-brain/ingress/ingress.yaml
+ - argocd/decision-brain/workers-on-demand/workers.yaml
 
 patches:
 - target:
